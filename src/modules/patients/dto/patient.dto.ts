@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsEnum, IsBoolean } from 'class-validator';
+import {
+  IsOptional,
+  IsEnum,
+  IsBoolean,
+  IsDate,
+  MaxLength,
+} from 'class-validator';
 
 enum Gender {
   MALE = 'masculino',
@@ -9,75 +15,87 @@ enum Ethnicity {
   WHITE = 'branca',
   BLACK = 'preta',
   BROWN = 'parda',
-  INDIGENOUS = 'indígena',
+  INDIGENOUS = 'indigena',
   YELLOW = 'amarela',
 }
 
 export class PatientDto {
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(255)
   readonly name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(255)
   readonly socialName: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsDate()
   readonly birthday: Date;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(255)
   readonly cns: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(15)
   readonly rg: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(11)
   readonly cpf: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(10)
   readonly zipCode: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   readonly address: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(20)
   readonly number: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   readonly neighborhood: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   readonly city: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   readonly state: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(255)
   readonly complement: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(14)
   readonly telephone: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(14)
   readonly cell: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(255)
   readonly fatherName: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @MaxLength(255)
   readonly motherName: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(Ethnicity, {
     message: 'A etnia deve ser branca, preta, parda, indígena ou amarela',
   })
   readonly ethnicity: Ethnicity;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(Gender, {
     message: 'O gênero deve ser masculino ou feminino',
   })
   readonly gender: Gender;
 
-  @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;
 }

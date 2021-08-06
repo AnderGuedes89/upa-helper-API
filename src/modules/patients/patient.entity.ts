@@ -106,7 +106,7 @@ export class Patient extends Model {
 
   @Column({
     type: DataType.ENUM,
-    values: ['masculino', 'feminino'],
+    values: ['branca', 'preta', 'parda', 'indigena', 'amarela'],
     allowNull: false,
   })
   ethnicity: string;
