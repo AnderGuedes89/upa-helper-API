@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PATIENT_REPOSITORY } from 'src/core/constants';
+import { PatientDto } from './dto/patient.dto';
 import { Patient } from './patient.entity';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class PatientsService {
     private readonly patientRepository: typeof Patient,
   ) {}
 
-  async create(patient: Patient): Promise<Patient> {
+  async create(patient: PatientDto): Promise<Patient> {
     return await this.patientRepository.create<Patient>(patient);
   }
 
@@ -25,7 +26,7 @@ export class PatientsService {
     return await this.patientRepository.destroy({ where: { id } });
   }
 
-  async update(id: number, data: Patient) {
+  async update(id: number, data: PatientDto) {
     const [numberOfAffectedRows, [updatedPatient]] =
       await this.patientRepository.update(
         { ...data },

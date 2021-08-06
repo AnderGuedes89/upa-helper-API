@@ -9,6 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { UserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
@@ -34,7 +35,7 @@ export class UsersController {
 
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
-  async update(@Param('id') id: number, @Body() user: User): Promise<User> {
+  async update(@Param('id') id: number, @Body() user: UserDto): Promise<User> {
     const { numberOfAffectedRows, updatedPost }: any =
       await this.usersService.update(id, user);
 

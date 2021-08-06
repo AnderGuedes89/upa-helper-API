@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { PatientDto } from './dto/patient.dto';
 import { Patient } from './patient.entity';
 import { PatientsService } from './patients.service';
 
@@ -19,7 +20,7 @@ export class PatientsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post()
-  async create(@Body() patient: Patient): Promise<Patient> {
+  async create(@Body() patient: PatientDto): Promise<Patient> {
     return await this.patientsService.create(patient);
   }
 
@@ -43,7 +44,7 @@ export class PatientsController {
   @Put(':id')
   async update(
     @Param('id') id: number,
-    @Body() patient: Patient,
+    @Body() patient: PatientDto,
   ): Promise<Patient> {
     const { numberOfAffectedRows, updatedPost }: any =
       await this.patientsService.update(id, patient);
