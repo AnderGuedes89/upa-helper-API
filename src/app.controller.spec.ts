@@ -15,8 +15,11 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return name e version', () => {
+      expect(appController.getVersion()).toBe({
+        name: 'UPA Helper',
+        version: '1.0.0',
+      });
     });
   });
 });

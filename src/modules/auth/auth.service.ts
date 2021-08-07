@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import { UserDto } from '../users/dto/user.dto';
 
 @Injectable()
 export class AuthService {
@@ -10,8 +11,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string) {
-    const user = await this.userService.findOneByEmail(username);
+  async validateUser(cpf: string, pass: string) {
+    const user = await this.userService.findOneByCpf(cpf);
     if (!user) {
       return null;
     }
@@ -21,8 +22,7 @@ export class AuthService {
       return null;
     }
 
-    // tslint:disable-next-line: no-string-literal
-    const { password, ...result } = user['dataValues'];
+    const { password, ...result } = user;
     return result;
   }
 
@@ -31,7 +31,7 @@ export class AuthService {
     return { user, token };
   }
 
-  public async create(user) {
+  public async create(user: UserDto) {
     const pass = await this.hashPassword(user.password);
 
     const newUser = await this.userService.create({ ...user, password: pass });
@@ -43,12 +43,12 @@ export class AuthService {
     return { user: result, token };
   }
 
-  private async generateToken(user) {
+  private async generateToken(user: UserDto) {
     const token = await this.jwtService.signAsync(user);
     return token;
   }
 
-  private async hashPassword(password) {
+  private async hashPassword(password: string) {
     const hash = await bcrypt.hash(password, 10);
     return hash;
   }

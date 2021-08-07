@@ -24,26 +24,26 @@ export class UsersController {
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<User> {
-    const post = await this.usersService.findOneById(id);
+    const user = await this.usersService.findOneById(id);
 
-    if (!post) {
+    if (!user) {
       throw new NotFoundException('Este usuário não existe');
     }
 
-    return post;
+    return user;
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(@Param('id') id: number, @Body() user: UserDto): Promise<User> {
-    const { numberOfAffectedRows, updatedPost }: any =
+    const { numberOfAffectedRows, updatedUser }: any =
       await this.usersService.update(id, user);
 
     if (numberOfAffectedRows === 0) {
-      throw new NotFoundException('Este paciente não existe');
+      throw new NotFoundException('Este usuário não existe');
     }
 
-    return updatedPost;
+    return updatedUser;
   }
 
   @UseGuards(AuthGuard('jwt'))
