@@ -16,12 +16,6 @@ export class User extends Model {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-  })
-  nickname: string;
-
-  @Column({
-    type: DataType.STRING,
     unique: true,
     allowNull: false,
   })

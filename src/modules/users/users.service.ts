@@ -34,12 +34,12 @@ export class UsersService {
   }
 
   async update(id: number, data: UserDto) {
-    const [numberOfAffectedRows, [updatedPatient]] =
+    const [numberOfAffectedRows, [updatedUser]] =
       await this.userRepository.update(
         { ...data },
         { where: { id }, returning: true },
       );
 
-    return { numberOfAffectedRows, updatedPatient };
+    return { numberOfAffectedRows, updatedUser };
   }
 }
