@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
-import { Patient } from 'src/modules/patients/patient.entity';
-import { User } from 'src/modules/users/user.entity';
+import { User } from 'src/modules/administrative/users/user.entity';
+import { Patient } from 'src/modules/medical-care/patients/patient.entity';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 

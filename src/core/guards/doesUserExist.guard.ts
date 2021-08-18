@@ -5,7 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { UsersService } from '../../modules/users/users.service';
+import { UsersService } from 'src/modules/administrative/users/users.service';
 
 @Injectable()
 export class DoesUserExist implements CanActivate {

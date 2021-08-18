@@ -1,5 +1,5 @@
+import { PATIENT_REPOSITORY } from 'src/core/constants';
 import { Patient } from './patient.entity';
-import { PATIENT_REPOSITORY } from '../../core/constants';
 
 export const patientsProviders = [
   {
