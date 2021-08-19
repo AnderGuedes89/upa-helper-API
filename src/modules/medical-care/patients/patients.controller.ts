@@ -46,14 +46,14 @@ export class PatientsController {
     @Param('id') id: number,
     @Body() patient: PatientDto,
   ): Promise<Patient> {
-    const { numberOfAffectedRows, updatedPost }: any =
+    const { numberOfAffectedRows, updatedPatient }: any =
       await this.patientsService.update(id, patient);
 
     if (numberOfAffectedRows === 0) {
       throw new NotFoundException('Este paciente não existe');
     }
 
-    return updatedPost;
+    return updatedPatient;
   }
 
   @UseGuards(AuthGuard('jwt'))
