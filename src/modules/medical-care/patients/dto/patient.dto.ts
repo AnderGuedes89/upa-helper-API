@@ -4,6 +4,7 @@ import {
   IsBoolean,
   IsDate,
   MaxLength,
+  IsNotEmpty,
 } from 'class-validator';
 
 enum Gender {
@@ -40,15 +41,16 @@ export class PatientDto {
   @MaxLength(15)
   readonly rg: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @MaxLength(11)
   readonly cpf: string;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(9)
   readonly zipCode: string;
 
   @IsOptional()
+  @MaxLength(255)
   readonly address: string;
 
   @IsOptional()
@@ -56,12 +58,15 @@ export class PatientDto {
   readonly number: string;
 
   @IsOptional()
+  @MaxLength(255)
   readonly neighborhood: string;
 
   @IsOptional()
+  @MaxLength(100)
   readonly city: string;
 
   @IsOptional()
+  @MaxLength(25)
   readonly state: string;
 
   @IsOptional()
@@ -69,7 +74,7 @@ export class PatientDto {
   readonly complement: string;
 
   @IsOptional()
-  @MaxLength(14)
+  @MaxLength(13)
   readonly telephone: string;
 
   @IsOptional()

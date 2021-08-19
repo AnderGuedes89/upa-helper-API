@@ -15,10 +15,12 @@ export class UserDto {
 
   @IsNotEmpty()
   @MinLength(6)
+  @MaxLength(255)
   readonly password: string;
 
   @IsNotEmpty()
   @IsEmail()
+  @MaxLength(255)
   readonly email: string;
 
   @IsNotEmpty()
@@ -34,10 +36,11 @@ export class UserDto {
   readonly cpf: string;
 
   @IsNotEmpty()
-  @MaxLength(10)
+  @MaxLength(9)
   readonly zipCode: string;
 
   @IsNotEmpty()
+  @MaxLength(255)
   readonly address: string;
 
   @IsNotEmpty()
@@ -45,12 +48,15 @@ export class UserDto {
   readonly number: string;
 
   @IsNotEmpty()
+  @MaxLength(255)
   readonly neighborhood: string;
 
   @IsNotEmpty()
+  @MaxLength(100)
   readonly city: string;
 
   @IsNotEmpty()
+  @MaxLength(25)
   readonly state: string;
 
   @IsOptional()
@@ -58,7 +64,7 @@ export class UserDto {
   readonly complement: string;
 
   @IsOptional()
-  @MaxLength(14)
+  @MaxLength(13)
   readonly telephone: string;
 
   @IsNotEmpty()

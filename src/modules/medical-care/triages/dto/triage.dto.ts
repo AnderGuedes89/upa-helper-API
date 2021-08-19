@@ -2,11 +2,11 @@ import { IsOptional, IsBoolean, IsDate, MaxLength } from 'class-validator';
 
 export class TriageDto {
   @IsOptional()
-  @MaxLength(255)
+  @MaxLength(11)
   readonly bloodPressure: string;
 
   @IsOptional()
-  @MaxLength(255)
+  @MaxLength(7)
   readonly temperature: string;
 
   @IsOptional()
@@ -14,15 +14,15 @@ export class TriageDto {
   readonly triageDate: Date;
 
   @IsOptional()
-  @MaxLength(15)
+  @MaxLength(10)
   readonly saturation: string;
 
   @IsOptional()
-  @MaxLength(15)
+  @MaxLength(10)
   readonly bloodGlucose: string;
 
   @IsOptional()
-  @MaxLength(11)
+  @MaxLength(10)
   readonly pulse: string;
 
   @IsOptional()
@@ -30,27 +30,31 @@ export class TriageDto {
   readonly respiratoryFrequency: string;
 
   @IsOptional()
+  @MaxLength(10)
   readonly weight: string;
 
   @IsOptional()
-  @MaxLength(20)
+  @MaxLength(10)
   readonly height: string;
 
   @IsOptional()
+  @MaxLength(255)
   readonly preInformation: string;
 
   @IsOptional()
+  @MaxLength(255)
   readonly medicines: string;
 
   @IsOptional()
+  @MaxLength(255)
   readonly personalBackground: string;
 
   @IsOptional()
-  @MaxLength(255)
+  @MaxLength(50)
   readonly pain: string;
 
   @IsOptional()
-  @MaxLength(14)
+  @MaxLength(50)
   readonly riskRating: string;
 
   @IsBoolean()

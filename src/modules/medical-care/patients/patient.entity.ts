@@ -21,25 +21,26 @@ export class Patient extends Model {
   birthday: Date;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(15),
     allowNull: false,
   })
   cns: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(15),
     allowNull: false,
   })
   rg: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(11),
     allowNull: false,
+    unique: true,
   })
   cpf: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(9),
     allowNull: false,
   })
   zipCode: string;
@@ -51,7 +52,7 @@ export class Patient extends Model {
   address: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(20),
     allowNull: false,
   })
   number: string;
@@ -63,13 +64,13 @@ export class Patient extends Model {
   neighborhood: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(100),
     allowNull: false,
   })
   city: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(25),
     allowNull: false,
   })
   state: string;
@@ -81,13 +82,13 @@ export class Patient extends Model {
   complement: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(13),
     allowNull: false,
   })
   telephone: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(14),
     allowNull: false,
   })
   cell: string;
