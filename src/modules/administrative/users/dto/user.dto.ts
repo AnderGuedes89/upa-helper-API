@@ -6,7 +6,9 @@ import {
   IsOptional,
   MaxLength,
   IsDate,
+  IsEnum,
 } from 'class-validator';
+import { UserTypeEnum } from 'src/core/enums/user-type.enum';
 
 export class UserDto {
   @IsNotEmpty()
@@ -70,6 +72,10 @@ export class UserDto {
   @IsNotEmpty()
   @MaxLength(14)
   readonly cell: string;
+
+  @IsOptional()
+  @IsEnum(UserTypeEnum)
+  readonly userType: UserTypeEnum;
 
   @IsBoolean()
   readonly isActive: boolean;

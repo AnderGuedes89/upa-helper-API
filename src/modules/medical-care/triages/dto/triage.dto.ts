@@ -5,21 +5,8 @@ import {
   MaxLength,
   IsEnum,
 } from 'class-validator';
-
-enum RiskRatingEnum {
-  RED = 0,
-  ORANGE = 1,
-  YELLOW = 2,
-  GREEN = 3,
-  BRUE = 4,
-}
-
-enum PainIntensityEnum {
-  PAINLESS = 0,
-  MILD_PAIN = 1,
-  MODERATE_PAIN = 2,
-  INTENSE_PAIN = 3,
-}
+import { PainIntensityEnum } from 'src/core/enums/pain-intensity.enum';
+import { RiskRatingEnum } from 'src/core/enums/risk-rating.enum';
 
 export class TriageDto {
   @IsOptional()

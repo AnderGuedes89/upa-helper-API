@@ -6,19 +6,8 @@ import {
   MaxLength,
   IsNotEmpty,
 } from 'class-validator';
-
-enum GenderEnum {
-  MALE = 'masculino',
-  FEMALE = 'feminino',
-}
-
-enum EthnicityEnum {
-  WHITE = 'branca',
-  BLACK = 'preta',
-  BROWN = 'parda',
-  INDIGENOUS = 'indigena',
-  YELLOW = 'amarela',
-}
+import { EthnicityEnum } from 'src/core/enums/ethnicity.enum';
+import { GenderEnum } from 'src/core/enums/gender.enum';
 
 export class PatientDto {
   @IsOptional()

@@ -7,6 +7,7 @@ import {
   BelongsTo,
   PrimaryKey,
 } from 'sequelize-typescript';
+import { User } from 'src/modules/administrative/users/user.entity';
 import { Attendance } from '../attendances/attendance.entity';
 
 @Table
@@ -127,4 +128,14 @@ export class Triage extends Model {
 
   @BelongsTo(() => Attendance)
   attendance: Attendance;
+
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  userId: number;
+
+  @BelongsTo(() => User)
+  user: User;
 }
