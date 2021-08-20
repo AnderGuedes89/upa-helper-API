@@ -7,12 +7,12 @@ import {
   IsNotEmpty,
 } from 'class-validator';
 
-enum Gender {
+enum GenderEnum {
   MALE = 'masculino',
   FEMALE = 'feminino',
 }
 
-enum Ethnicity {
+enum EthnicityEnum {
   WHITE = 'branca',
   BLACK = 'preta',
   BROWN = 'parda',
@@ -90,16 +90,16 @@ export class PatientDto {
   readonly motherName: string;
 
   @IsOptional()
-  @IsEnum(Ethnicity, {
+  @IsEnum(EthnicityEnum, {
     message: 'A etnia deve ser branca, preta, parda, indígena ou amarela',
   })
-  readonly ethnicity: Ethnicity;
+  readonly ethnicity: EthnicityEnum;
 
   @IsOptional()
-  @IsEnum(Gender, {
+  @IsEnum(GenderEnum, {
     message: 'O gênero deve ser masculino ou feminino',
   })
-  readonly gender: Gender;
+  readonly gender: GenderEnum;
 
   @IsBoolean()
   readonly isActive: boolean;

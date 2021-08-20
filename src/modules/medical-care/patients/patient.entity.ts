@@ -1,7 +1,22 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  HasMany,
+  PrimaryKey,
+} from 'sequelize-typescript';
+import { Attendance } from '../attendances/attendance.entity';
 
 @Table
 export class Patient extends Model {
+  @PrimaryKey
+  @Column({
+    allowNull: false,
+    autoIncrement: true,
+  })
+  id: number;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -125,4 +140,7 @@ export class Patient extends Model {
     defaultValue: true,
   })
   isActive: boolean;
+
+  @HasMany(() => Attendance)
+  attendance?: Attendance[];
 }

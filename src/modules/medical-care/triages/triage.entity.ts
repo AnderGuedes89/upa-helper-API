@@ -1,7 +1,23 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  PrimaryKey,
+} from 'sequelize-typescript';
+import { Attendance } from '../attendances/attendance.entity';
 
 @Table
 export class Triage extends Model {
+  @PrimaryKey
+  @Column({
+    allowNull: false,
+    autoIncrement: true,
+  })
+  id: number;
+
   @Column({
     type: DataType.STRING(11),
     allowNull: false,
@@ -75,16 +91,18 @@ export class Triage extends Model {
   personalBackground: string;
 
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.ENUM,
+    values: ['0', '1', '2', '3'],
     allowNull: false,
   })
-  pain: string;
+  painIntensity: number;
 
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.ENUM,
+    values: ['0', '1', '2', '3', '4'],
     allowNull: false,
   })
-  riskRating: string;
+  riskRating: number;
 
   @Column({
     type: DataType.BOOLEAN,
@@ -99,4 +117,14 @@ export class Triage extends Model {
     defaultValue: true,
   })
   isActive: boolean;
+
+  @ForeignKey(() => Attendance)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  attendanceId: number;
+
+  @BelongsTo(() => Attendance)
+  attendance: Attendance;
 }

@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import { User } from 'src/modules/administrative/users/user.entity';
+import { Attendance } from 'src/modules/medical-care/attendances/attendance.entity';
 import { Patient } from 'src/modules/medical-care/patients/patient.entity';
+import { Triage } from 'src/modules/medical-care/triages/triage.entity';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 
@@ -23,7 +25,7 @@ export const databaseProviders = [
           config = databaseConfig.development;
       }
       const sequelize = new Sequelize(config);
-      sequelize.addModels([User, Patient]);
+      sequelize.addModels([User, Patient, Attendance, Triage]);
       await sequelize.sync();
       return sequelize;
     },

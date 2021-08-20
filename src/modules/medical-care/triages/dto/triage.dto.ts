@@ -1,4 +1,25 @@
-import { IsOptional, IsBoolean, IsDate, MaxLength } from 'class-validator';
+import {
+  IsOptional,
+  IsBoolean,
+  IsDate,
+  MaxLength,
+  IsEnum,
+} from 'class-validator';
+
+enum RiskRatingEnum {
+  RED = 0,
+  ORANGE = 1,
+  YELLOW = 2,
+  GREEN = 3,
+  BRUE = 4,
+}
+
+enum PainIntensityEnum {
+  PAINLESS = 0,
+  MILD_PAIN = 1,
+  MODERATE_PAIN = 2,
+  INTENSE_PAIN = 3,
+}
 
 export class TriageDto {
   @IsOptional()
@@ -50,12 +71,12 @@ export class TriageDto {
   readonly personalBackground: string;
 
   @IsOptional()
-  @MaxLength(50)
-  readonly pain: string;
+  @IsEnum(PainIntensityEnum)
+  readonly painIntensity: PainIntensityEnum;
 
   @IsOptional()
-  @MaxLength(50)
-  readonly riskRating: string;
+  @IsEnum(RiskRatingEnum)
+  readonly riskRating: RiskRatingEnum;
 
   @IsBoolean()
   readonly isPreferred: boolean;
