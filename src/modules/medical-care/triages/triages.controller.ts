@@ -30,8 +30,8 @@ export class TriagesController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Triage> {
-    const post = await this.triagesService.findOne(id);
+  async findOneById(@Param('id') id: number): Promise<Triage> {
+    const post = await this.triagesService.findOneById(id);
 
     if (!post) {
       throw new NotFoundException('Essa triagem não existe');

@@ -18,7 +18,7 @@ export class TriagesService {
     return await this.triageRepository.findAll<Triage>();
   }
 
-  async findOne(id: number): Promise<Triage> {
+  async findOneById(id: number): Promise<Triage> {
     return await this.triageRepository.findOne({ where: { id } });
   }
 

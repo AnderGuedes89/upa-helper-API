@@ -30,8 +30,8 @@ export class AttendancesController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Attendance> {
-    const post = await this.attendancesService.findOne(id);
+  async findOneById(@Param('id') id: number): Promise<Attendance> {
+    const post = await this.attendancesService.findOneById(id);
 
     if (!post) {
       throw new NotFoundException('Este atendimento não existe');

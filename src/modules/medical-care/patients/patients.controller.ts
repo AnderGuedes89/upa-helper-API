@@ -30,8 +30,8 @@ export class PatientsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Patient> {
-    const post = await this.patientsService.findOne(id);
+  async findOneById(@Param('id') id: number): Promise<Patient> {
+    const post = await this.patientsService.findOneById(id);
 
     if (!post) {
       throw new NotFoundException('Este paciente não existe');

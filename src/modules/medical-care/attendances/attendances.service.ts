@@ -18,7 +18,7 @@ export class AttendancesService {
     return await this.attendanceRepository.findAll<Attendance>();
   }
 
-  async findOne(id: number): Promise<Attendance> {
+  async findOneById(id: number): Promise<Attendance> {
     return await this.attendanceRepository.findOne({ where: { id } });
   }
 

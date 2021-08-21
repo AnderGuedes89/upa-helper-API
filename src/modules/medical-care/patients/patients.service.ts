@@ -18,7 +18,7 @@ export class PatientsService {
     return await this.patientRepository.findAll<Patient>();
   }
 
-  async findOne(id: number): Promise<Patient> {
+  async findOneById(id: number): Promise<Patient> {
     return await this.patientRepository.findOne({ where: { id } });
   }
 
