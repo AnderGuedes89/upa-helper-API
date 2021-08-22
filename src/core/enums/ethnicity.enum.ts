@@ -1,7 +1,7 @@
 export enum EthnicityEnum {
-  white = 'branca',
-  black = 'preta',
-  brown = 'parda',
-  indigenous = 'indigena',
-  yellow = 'amarela',
+  white = 1,
+  black = 2,
+  brown = 3,
+  indigenous = 4,
+  yellow = 5,
 }

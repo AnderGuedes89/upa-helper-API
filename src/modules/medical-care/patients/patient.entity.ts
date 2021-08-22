@@ -6,6 +6,8 @@ import {
   HasMany,
   PrimaryKey,
 } from 'sequelize-typescript';
+import { EthnicityEnum } from 'src/core/enums/ethnicity.enum';
+import { GenderEnum } from 'src/core/enums/gender.enum';
 import { Attendance } from '../attendances/attendance.entity';
 
 @Table
@@ -48,7 +50,7 @@ export class Patient extends Model {
   rg: string;
 
   @Column({
-    type: DataType.STRING(11),
+    type: DataType.STRING(14),
     allowNull: false,
     unique: true,
   })
@@ -121,18 +123,16 @@ export class Patient extends Model {
   motherName: string;
 
   @Column({
-    type: DataType.ENUM,
-    values: ['branca', 'preta', 'parda', 'indigena', 'amarela'],
+    type: DataType.SMALLINT,
     allowNull: false,
   })
-  ethnicity: string;
+  ethnicity: EthnicityEnum;
 
   @Column({
-    type: DataType.ENUM,
-    values: ['masculino', 'feminino'],
+    type: DataType.SMALLINT,
     allowNull: false,
   })
-  gender: string;
+  gender: GenderEnum;
 
   @Column({
     type: DataType.BOOLEAN,

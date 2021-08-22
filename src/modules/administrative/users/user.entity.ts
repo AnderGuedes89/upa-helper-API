@@ -6,6 +6,7 @@ import {
   HasMany,
   PrimaryKey,
 } from 'sequelize-typescript';
+import { UserTypeEnum } from 'src/core/enums/user-type.enum';
 import { Triage } from 'src/modules/medical-care/triages/triage.entity';
 
 @Table
@@ -49,7 +50,7 @@ export class User extends Model {
   rg: string;
 
   @Column({
-    type: DataType.STRING(11),
+    type: DataType.STRING(14),
     allowNull: false,
     unique: true,
   })
@@ -112,11 +113,10 @@ export class User extends Model {
   cell: string;
 
   @Column({
-    type: DataType.ENUM,
-    values: ['0', '1', '2', '3', '4', '5', '6'],
+    type: DataType.SMALLINT,
     allowNull: false,
   })
-  userType: number;
+  userType: UserTypeEnum;
 
   @Column({
     type: DataType.BOOLEAN,

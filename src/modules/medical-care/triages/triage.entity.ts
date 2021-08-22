@@ -7,6 +7,8 @@ import {
   BelongsTo,
   PrimaryKey,
 } from 'sequelize-typescript';
+import { PainIntensityEnum } from 'src/core/enums/pain-intensity.enum';
+import { RiskRatingEnum } from 'src/core/enums/risk-rating.enum';
 import { User } from 'src/modules/administrative/users/user.entity';
 import { Attendance } from '../attendances/attendance.entity';
 
@@ -74,36 +76,34 @@ export class Triage extends Model {
   height: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   preInformation: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   medicines: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   personalBackground: string;
 
   @Column({
-    type: DataType.ENUM,
-    values: ['0', '1', '2', '3'],
+    type: DataType.SMALLINT,
     allowNull: false,
   })
-  painIntensity: number;
+  painIntensity: PainIntensityEnum;
 
   @Column({
-    type: DataType.ENUM,
-    values: ['0', '1', '2', '3', '4'],
+    type: DataType.SMALLINT,
     allowNull: false,
   })
-  riskRating: number;
+  riskRating: RiskRatingEnum;
 
   @Column({
     type: DataType.BOOLEAN,

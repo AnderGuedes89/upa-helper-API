@@ -5,11 +5,11 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { UsersService } from 'src/modules/administrative/users/users.service';
+import { PatientsService } from 'src/modules/medical-care/patients/patients.service';
 
 @Injectable()
-export class DoesUserExist implements CanActivate {
-  constructor(private readonly userService: UsersService) {}
+export class DoesPatientExist implements CanActivate {
+  constructor(private readonly patientsService: PatientsService) {}
 
   canActivate(
     context: ExecutionContext,
@@ -19,9 +19,9 @@ export class DoesUserExist implements CanActivate {
   }
 
   async validateRequest(request) {
-    const userExist = await this.userService.findOneByCpf(request.body.cpf);
-    if (userExist) {
-      throw new ForbiddenException('Já existe um usuário com esse CPF');
+    const isExist = await this.patientsService.findOneByCpf(request.body.cpf);
+    if (isExist) {
+      throw new ForbiddenException('Já existe um paciente com esse CPF');
     }
     return true;
   }

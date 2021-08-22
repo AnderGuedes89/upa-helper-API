@@ -22,6 +22,10 @@ export class PatientsService {
     return await this.patientRepository.findOne({ where: { id } });
   }
 
+  async findOneByCpf(cpf: string): Promise<Patient> {
+    return await this.patientRepository.findOne<Patient>({ where: { cpf } });
+  }
+
   async delete(id: number) {
     return await this.patientRepository.destroy({ where: { id } });
   }

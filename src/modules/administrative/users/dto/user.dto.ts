@@ -34,7 +34,7 @@ export class UserDto {
   readonly rg: string;
 
   @IsNotEmpty()
-  @MaxLength(11)
+  @MaxLength(14)
   readonly cpf: string;
 
   @IsNotEmpty()

@@ -31,7 +31,7 @@ export class PatientDto {
   readonly rg: string;
 
   @IsNotEmpty()
-  @MaxLength(11)
+  @MaxLength(14)
   readonly cpf: string;
 
   @IsOptional()

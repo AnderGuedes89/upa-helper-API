@@ -34,7 +34,7 @@ export class AttendancesController {
     const post = await this.attendancesService.findOneById(id);
 
     if (!post) {
-      throw new NotFoundException('Este atendimento não existe');
+      throw new NotFoundException('Esse atendimento não existe');
     }
 
     return post;
@@ -50,7 +50,7 @@ export class AttendancesController {
       await this.attendancesService.update(id, attendance);
 
     if (numberOfAffectedRows === 0) {
-      throw new NotFoundException('Este atendimento não existe');
+      throw new NotFoundException('Esse atendimento não existe');
     }
 
     return updatedAttendance;
@@ -62,7 +62,7 @@ export class AttendancesController {
     const deleted = await this.attendancesService.delete(id);
 
     if (deleted === 0) {
-      throw new NotFoundException('Este atendimento não existe');
+      throw new NotFoundException('Esse atendimento não existe');
     }
 
     return 'Excluído com sucesso';
