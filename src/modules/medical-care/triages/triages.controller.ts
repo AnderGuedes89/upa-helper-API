@@ -18,7 +18,7 @@ import { TriagesService } from './triages.service';
 export class TriagesController {
   constructor(private readonly triagesService: TriagesService) {}
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() triage: TriageDto): Promise<Triage> {
     return await this.triagesService.create(triage);
@@ -40,7 +40,7 @@ export class TriagesController {
     return post;
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -56,7 +56,7 @@ export class TriagesController {
     return updatedTriage;
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async remove(@Param('id') id: number) {
     const deleted = await this.triagesService.delete(id);

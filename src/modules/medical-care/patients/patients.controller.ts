@@ -19,7 +19,7 @@ import { PatientsService } from './patients.service';
 export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @UseGuards(DoesPatientExist)
   @Post()
   async create(@Body() patient: PatientDto): Promise<Patient> {
@@ -42,7 +42,7 @@ export class PatientsController {
     return post;
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -58,7 +58,7 @@ export class PatientsController {
     return updatedPatient;
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async remove(@Param('id') id: number) {
     const deleted = await this.patientsService.delete(id);
