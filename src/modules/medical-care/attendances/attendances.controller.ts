@@ -29,6 +29,11 @@ export class AttendancesController {
     return await this.attendancesService.findAll();
   }
 
+  @Get('table')
+  async findAllForTable() {
+    return await this.attendancesService.findAllForTable();
+  }
+
   @Get(':id')
   async findOneById(@Param('id') id: number): Promise<Attendance> {
     const post = await this.attendancesService.findOneById(id);

@@ -3,5 +3,5 @@ export enum RiskRatingEnum {
   orange = 1,
   yellow = 2,
   green = 3,
-  brue = 4,
+  blue = 4,
 }

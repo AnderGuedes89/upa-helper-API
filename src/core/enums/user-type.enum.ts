@@ -10,5 +10,5 @@ export enum UserTypeEnum {
   director = 8,
   coordinator = 9,
   general_services_assistant = 10,
-  it = 99,
+  it = 11,
 }
