@@ -29,6 +29,19 @@ export class UsersService {
     return await this.userRepository.findAll<User>();
   }
 
+  async findAllForTable(): Promise<any[]> {
+    const allUser = await this.userRepository.findAll<User>({
+      include: ['userType'],
+    });
+    const userForTable = allUser.map((a) => ({
+      id: a.id,
+      name: a.name,
+      userType: a.userType.label,
+      cell: a.cell,
+    }));
+    return userForTable;
+  }
+
   async delete(id: number) {
     return await this.userRepository.destroy({ where: { id } });
   }

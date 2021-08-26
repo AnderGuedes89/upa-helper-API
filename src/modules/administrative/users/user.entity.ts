@@ -5,9 +5,11 @@ import {
   DataType,
   HasMany,
   PrimaryKey,
+  ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
-import { UserTypeEnum } from 'src/core/enums/user-type.enum';
 import { Triage } from 'src/modules/medical-care/triages/triage.entity';
+import { UserType } from '../user-types/user-type.entity';
 
 @Table
 export class User extends Model {
@@ -113,17 +115,21 @@ export class User extends Model {
   cell: string;
 
   @Column({
-    type: DataType.SMALLINT,
-    allowNull: false,
-  })
-  userType: UserTypeEnum;
-
-  @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: true,
   })
   isActive: boolean;
+
+  @ForeignKey(() => UserType)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  userTypeId: number;
+
+  @BelongsTo(() => UserType)
+  userType: UserType;
 
   @HasMany(() => Triage)
   triage?: Triage[];

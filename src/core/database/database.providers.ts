@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
+import { UserType } from 'src/modules/administrative/user-types/user-type.entity';
 import { User } from 'src/modules/administrative/users/user.entity';
 import { Attendance } from 'src/modules/medical-care/attendances/attendance.entity';
 import { Patient } from 'src/modules/medical-care/patients/patient.entity';
@@ -25,7 +26,7 @@ export const databaseProviders = [
           config = databaseConfig.development;
       }
       const sequelize = new Sequelize(config);
-      sequelize.addModels([User, Patient, Attendance, Triage]);
+      sequelize.addModels([User, Patient, Attendance, Triage, UserType]);
       await sequelize.sync();
       return sequelize;
     },

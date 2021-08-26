@@ -22,6 +22,11 @@ export class UsersController {
     return await this.usersService.findAll();
   }
 
+  @Get('table')
+  async findAllForTable() {
+    return await this.usersService.findAllForTable();
+  }
+
   @Get(':id')
   async findOneById(@Param('id') id: number): Promise<User> {
     const user = await this.usersService.findOneById(id);
