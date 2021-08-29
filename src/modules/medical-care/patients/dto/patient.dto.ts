@@ -2,9 +2,9 @@ import {
   IsOptional,
   IsEnum,
   IsBoolean,
-  IsDate,
   MaxLength,
   IsNotEmpty,
+  IsDateString,
 } from 'class-validator';
 import { EthnicityEnum } from 'src/core/enums/ethnicity.enum';
 import { GenderEnum } from 'src/core/enums/gender.enum';
@@ -19,7 +19,7 @@ export class PatientDto {
   readonly socialName: string;
 
   @IsOptional()
-  @IsDate()
+  @IsDateString()
   readonly birthday: Date;
 
   @IsOptional()

@@ -5,7 +5,7 @@ import {
   IsBoolean,
   IsOptional,
   MaxLength,
-  IsDate,
+  IsDateString,
 } from 'class-validator';
 
 export class UserDto {
@@ -24,7 +24,7 @@ export class UserDto {
   readonly email: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   readonly birthday: Date;
 
   @IsNotEmpty()
