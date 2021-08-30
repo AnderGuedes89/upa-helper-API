@@ -7,8 +7,8 @@ import {
   BelongsTo,
   PrimaryKey,
 } from 'sequelize-typescript';
-import { PainIntensityEnum } from 'src/core/enums/pain-intensity.enum';
-import { RiskRatingEnum } from 'src/core/enums/risk-rating.enum';
+import { PainIntensity } from 'src/core/entities/pain-intensity.entity';
+import { RiskRating } from 'src/core/entities/risk-rating.entity';
 import { User } from 'src/modules/administrative/users/user.entity';
 import { Attendance } from '../attendances/attendance.entity';
 
@@ -93,17 +93,19 @@ export class Triage extends Model {
   })
   personalBackground: string;
 
+  @ForeignKey(() => PainIntensity)
   @Column({
-    type: DataType.SMALLINT,
+    type: DataType.INTEGER,
     allowNull: false,
   })
-  painIntensity: PainIntensityEnum;
+  painIntensityId: number;
 
+  @ForeignKey(() => RiskRating)
   @Column({
-    type: DataType.SMALLINT,
+    type: DataType.INTEGER,
     allowNull: false,
   })
-  riskRating: RiskRatingEnum;
+  riskRatingId: number;
 
   @Column({
     type: DataType.BOOLEAN,
@@ -135,7 +137,4 @@ export class Triage extends Model {
     allowNull: false,
   })
   userId: number;
-
-  @BelongsTo(() => User)
-  user: User;
 }

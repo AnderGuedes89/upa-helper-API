@@ -8,8 +8,8 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
+import { UserType } from 'src/core/entities/user-type.entity';
 import { Triage } from 'src/modules/medical-care/triages/triage.entity';
-import { UserType } from '../user-types/user-type.entity';
 
 @Table
 export class User extends Model {
@@ -34,7 +34,6 @@ export class User extends Model {
 
   @Column({
     type: DataType.STRING,
-    unique: true,
     allowNull: false,
   })
   email: string;
@@ -89,7 +88,7 @@ export class User extends Model {
   city: string;
 
   @Column({
-    type: DataType.STRING(25),
+    type: DataType.CHAR(2),
     allowNull: false,
   })
   state: string;

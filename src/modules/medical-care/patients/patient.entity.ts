@@ -5,9 +5,10 @@ import {
   DataType,
   HasMany,
   PrimaryKey,
+  ForeignKey,
 } from 'sequelize-typescript';
-import { EthnicityEnum } from 'src/core/enums/ethnicity.enum';
-import { GenderEnum } from 'src/core/enums/gender.enum';
+import { Ethnicity } from 'src/core/entities/ethnicity.entity';
+import { Gender } from 'src/core/entities/gender.entity';
 import { Attendance } from '../attendances/attendance.entity';
 
 @Table
@@ -87,7 +88,7 @@ export class Patient extends Model {
   city: string;
 
   @Column({
-    type: DataType.STRING(25),
+    type: DataType.CHAR(2),
     allowNull: false,
   })
   state: string;
@@ -122,17 +123,19 @@ export class Patient extends Model {
   })
   motherName: string;
 
+  @ForeignKey(() => Ethnicity)
   @Column({
-    type: DataType.SMALLINT,
+    type: DataType.INTEGER,
     allowNull: false,
   })
-  ethnicity: EthnicityEnum;
+  ethnicityId: number;
 
+  @ForeignKey(() => Gender)
   @Column({
-    type: DataType.SMALLINT,
+    type: DataType.INTEGER,
     allowNull: false,
   })
-  gender: GenderEnum;
+  genderId: number;
 
   @Column({
     type: DataType.BOOLEAN,
