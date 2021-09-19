@@ -1,9 +1,9 @@
 import {
   IsOptional,
   IsBoolean,
-  IsDate,
   MaxLength,
   IsNotEmpty,
+  IsDateString,
 } from 'class-validator';
 
 export class AttendanceDto {
@@ -11,17 +11,19 @@ export class AttendanceDto {
   @MaxLength(512)
   readonly receptionInformation: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @MaxLength(3)
   readonly patientAge: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   readonly arrivalDate: Date;
 
+  @IsNotEmpty()
   @IsBoolean()
   readonly isSamu: boolean;
 
+  @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;
 }

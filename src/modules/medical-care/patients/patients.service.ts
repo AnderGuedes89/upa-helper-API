@@ -15,15 +15,23 @@ export class PatientsService {
   }
 
   async findAll(): Promise<Patient[]> {
-    return await this.patientRepository.findAll<Patient>();
+    return await this.patientRepository.findAll<Patient>({
+      include: ['ethnicity', 'gender'],
+    });
   }
 
   async findOneById(id: number): Promise<Patient> {
-    return await this.patientRepository.findOne({ where: { id } });
+    return await this.patientRepository.findOne({
+      where: { id },
+      include: ['ethnicity', 'gender'],
+    });
   }
 
   async findOneByCpf(cpf: string): Promise<Patient> {
-    return await this.patientRepository.findOne<Patient>({ where: { cpf } });
+    return await this.patientRepository.findOne<Patient>({
+      where: { cpf },
+      include: ['ethnicity', 'gender'],
+    });
   }
 
   async delete(id: number) {

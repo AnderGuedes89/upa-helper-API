@@ -56,7 +56,7 @@ export class UserDto {
   readonly city: string;
 
   @IsNotEmpty()
-  @MaxLength(25)
+  @MaxLength(2)
   readonly state: string;
 
   @IsOptional()
@@ -71,6 +71,7 @@ export class UserDto {
   @MaxLength(14)
   readonly cell: string;
 
+  @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;
 }

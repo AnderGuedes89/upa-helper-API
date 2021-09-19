@@ -1,13 +1,10 @@
 import {
   IsOptional,
-  IsEnum,
   IsBoolean,
   MaxLength,
-  IsNotEmpty,
   IsDateString,
+  IsNotEmpty,
 } from 'class-validator';
-import { EthnicityEnum } from 'src/core/enums/ethnicity.enum';
-import { GenderEnum } from 'src/core/enums/gender.enum';
 
 export class PatientDto {
   @IsOptional()
@@ -30,7 +27,7 @@ export class PatientDto {
   @MaxLength(15)
   readonly rg: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @MaxLength(14)
   readonly cpf: string;
 
@@ -55,7 +52,7 @@ export class PatientDto {
   readonly city: string;
 
   @IsOptional()
-  @MaxLength(25)
+  @MaxLength(2)
   readonly state: string;
 
   @IsOptional()
@@ -78,18 +75,7 @@ export class PatientDto {
   @MaxLength(255)
   readonly motherName: string;
 
-  @IsOptional()
-  @IsEnum(EthnicityEnum, {
-    message: 'A etnia deve ser branca, preta, parda, indígena ou amarela',
-  })
-  readonly ethnicity: EthnicityEnum;
-
-  @IsOptional()
-  @IsEnum(GenderEnum, {
-    message: 'O gênero deve ser masculino ou feminino',
-  })
-  readonly gender: GenderEnum;
-
+  @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;
 }

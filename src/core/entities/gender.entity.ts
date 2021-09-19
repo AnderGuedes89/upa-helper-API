@@ -4,7 +4,9 @@ import {
   Model,
   DataType,
   PrimaryKey,
+  HasMany,
 } from 'sequelize-typescript';
+import { Patient } from 'src/modules/medical-care/patients/patient.entity';
 
 @Table
 export class Gender extends Model {
@@ -27,4 +29,7 @@ export class Gender extends Model {
     defaultValue: true,
   })
   isActive: boolean;
+
+  @HasMany(() => Patient)
+  patient?: Patient[];
 }

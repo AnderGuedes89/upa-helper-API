@@ -1,12 +1,11 @@
 import {
   IsOptional,
   IsBoolean,
-  IsDate,
   MaxLength,
-  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsDateString,
 } from 'class-validator';
-import { PainIntensityEnum } from 'src/core/enums/pain-intensity.enum';
-import { RiskRatingEnum } from 'src/core/enums/risk-rating.enum';
 
 export class TriageDto {
   @IsOptional()
@@ -17,8 +16,8 @@ export class TriageDto {
   @MaxLength(7)
   readonly temperature: string;
 
-  @IsOptional()
-  @IsDate()
+  @IsNotEmpty()
+  @IsDateString()
   readonly triageDate: Date;
 
   @IsOptional()
@@ -58,16 +57,18 @@ export class TriageDto {
   readonly personalBackground: string;
 
   @IsOptional()
-  @IsEnum(PainIntensityEnum)
-  readonly painIntensity: PainIntensityEnum;
+  @IsInt()
+  readonly painIntensity: number;
 
-  @IsOptional()
-  @IsEnum(RiskRatingEnum)
-  readonly riskRating: RiskRatingEnum;
+  @IsNotEmpty()
+  @IsInt()
+  readonly riskRating: number;
 
+  @IsNotEmpty()
   @IsBoolean()
   readonly isPreferred: boolean;
 
+  @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;
 }

@@ -80,7 +80,7 @@ export const databaseProviders = [
         PainIntensity,
       ]);
       await sequelize.sync();
-      insertInitialData();
+      // insertInitialData();
       return sequelize;
     },
   },

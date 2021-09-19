@@ -6,6 +6,7 @@ import {
   HasMany,
   PrimaryKey,
   ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Ethnicity } from 'src/core/entities/ethnicity.entity';
 import { Gender } from 'src/core/entities/gender.entity';
@@ -146,4 +147,10 @@ export class Patient extends Model {
 
   @HasMany(() => Attendance)
   attendance?: Attendance[];
+
+  @BelongsTo(() => Gender)
+  gender: Gender;
+
+  @BelongsTo(() => Ethnicity)
+  ethnicity: Ethnicity;
 }
