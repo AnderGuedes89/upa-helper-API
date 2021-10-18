@@ -27,8 +27,16 @@ export class AuthService {
   }
 
   public async login(user) {
-    const token = await this.generateToken(user);
-    return { user, token };
+    const userLogin = await this.userService.findOneByCpf(user.cpf);
+
+    const userForToken = {
+      ...user,
+      id: userLogin['dataValues'].id,
+      name: userLogin['dataValues'].name,
+    };
+
+    const token = await this.generateToken(userForToken);
+    return { token };
   }
 
   public async create(user: UserDto) {

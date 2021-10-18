@@ -29,25 +29,25 @@ export class Patient extends Model {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   socialName: string;
 
   @Column({
     type: DataType.DATE,
-    allowNull: false,
+    allowNull: true,
   })
   birthday: Date;
 
   @Column({
-    type: DataType.STRING(15),
-    allowNull: false,
+    type: DataType.STRING(18),
+    allowNull: true,
   })
   cns: string;
 
   @Column({
     type: DataType.STRING(15),
-    allowNull: false,
+    allowNull: true,
   })
   rg: string;
 
@@ -60,67 +60,67 @@ export class Patient extends Model {
 
   @Column({
     type: DataType.STRING(9),
-    allowNull: false,
+    allowNull: true,
   })
   zipCode: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   address: string;
 
   @Column({
     type: DataType.STRING(20),
-    allowNull: false,
+    allowNull: true,
   })
   number: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   neighborhood: string;
 
   @Column({
     type: DataType.STRING(100),
-    allowNull: false,
+    allowNull: true,
   })
   city: string;
 
   @Column({
     type: DataType.CHAR(2),
-    allowNull: false,
+    allowNull: true,
   })
   state: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   complement: string;
 
   @Column({
     type: DataType.STRING(13),
-    allowNull: false,
+    allowNull: true,
   })
   telephone: string;
 
   @Column({
     type: DataType.STRING(14),
-    allowNull: false,
+    allowNull: true,
   })
   cell: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   fatherName: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   motherName: string;
 

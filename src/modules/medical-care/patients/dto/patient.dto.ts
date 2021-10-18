@@ -20,7 +20,7 @@ export class PatientDto {
   readonly birthday: Date;
 
   @IsOptional()
-  @MaxLength(15)
+  @MaxLength(18)
   readonly cns: string;
 
   @IsOptional()
