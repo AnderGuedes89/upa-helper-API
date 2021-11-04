@@ -76,6 +76,12 @@ export class Triage extends Model {
   height: string;
 
   @Column({
+    type: DataType.STRING(10),
+    allowNull: false,
+  })
+  imc: string;
+
+  @Column({
     type: DataType.TEXT,
     allowNull: false,
   })
@@ -86,6 +92,12 @@ export class Triage extends Model {
     allowNull: false,
   })
   medicines: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+  })
+  allergies: string;
 
   @Column({
     type: DataType.TEXT,
@@ -113,6 +125,41 @@ export class Triage extends Model {
     defaultValue: false,
   })
   isPreferred: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  hasHypertension: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  hasDiabetes: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  isSmoker: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  hasCancer: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  isTransplanted: boolean;
 
   @Column({
     type: DataType.BOOLEAN,

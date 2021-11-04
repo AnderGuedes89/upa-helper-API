@@ -45,12 +45,20 @@ export class TriageDto {
   readonly height: string;
 
   @IsOptional()
+  @MaxLength(10)
+  readonly imc: string;
+
+  @IsOptional()
   @MaxLength(255)
   readonly preInformation: string;
 
   @IsOptional()
   @MaxLength(255)
   readonly medicines: string;
+
+  @IsOptional()
+  @MaxLength(255)
+  readonly allergies: string;
 
   @IsOptional()
   @MaxLength(255)
@@ -67,6 +75,26 @@ export class TriageDto {
   @IsNotEmpty()
   @IsBoolean()
   readonly isPreferred: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly hasHypertension: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly hasDiabetes: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly isSmoker: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly hasCancer: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly isTransplanted: boolean;
 
   @IsNotEmpty()
   @IsBoolean()
