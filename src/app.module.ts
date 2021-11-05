@@ -8,7 +8,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { PatientsModule } from './modules/medical-care/patients/patients.module';
 import { AttendancesModule } from './modules/medical-care/attendances/attendances.module';
 import { TriagesModule } from './modules/medical-care/triages/triages.module';
-import { UserTypesModule } from './modules/administrative/user-types/user-types.module';
 import { APP_PIPE } from '@nestjs/core';
 
 @Module({
@@ -20,7 +19,6 @@ import { APP_PIPE } from '@nestjs/core';
     PatientsModule,
     AttendancesModule,
     TriagesModule,
-    UserTypesModule,
   ],
   controllers: [AppController],
   providers: [

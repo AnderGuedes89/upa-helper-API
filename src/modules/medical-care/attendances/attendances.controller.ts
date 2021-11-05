@@ -14,11 +14,11 @@ import { Attendance } from './attendance.entity';
 import { AttendancesService } from './attendances.service';
 import { AttendanceDto } from './dto/attendance.dto';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('attendances')
 export class AttendancesController {
   constructor(private readonly attendancesService: AttendancesService) {}
 
-  // @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() attendance: AttendanceDto): Promise<Attendance> {
     return await this.attendancesService.create(attendance);
@@ -45,7 +45,6 @@ export class AttendancesController {
     return post;
   }
 
-  // @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -61,7 +60,6 @@ export class AttendancesController {
     return updatedAttendance;
   }
 
-  // @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async remove(@Param('id') id: number) {
     const deleted = await this.attendancesService.delete(id);

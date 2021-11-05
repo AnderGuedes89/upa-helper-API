@@ -13,6 +13,7 @@ import { UserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -38,7 +39,6 @@ export class UsersController {
     return user;
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(@Param('id') id: number, @Body() user: UserDto): Promise<User> {
     const { numberOfAffectedRows, updatedUser }: any =
@@ -51,7 +51,6 @@ export class UsersController {
     return updatedUser;
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async remove(@Param('id') id: number) {
     const deleted = await this.usersService.delete(id);
