@@ -13,7 +13,7 @@ import { UsersModule } from '../administrative/users/users.module';
     UsersModule,
     JwtModule.register({
       secret: process.env.JWTKEY,
-      signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
+      signOptions: { expiresIn: '3600s' },
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],

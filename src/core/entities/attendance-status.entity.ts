@@ -4,7 +4,9 @@ import {
   Model,
   DataType,
   PrimaryKey,
+  HasMany,
 } from 'sequelize-typescript';
+import { Attendance } from 'src/modules/medical-care/attendances/attendance.entity';
 
 @Table
 export class AttendanceStatus extends Model {
@@ -27,4 +29,7 @@ export class AttendanceStatus extends Model {
     defaultValue: true,
   })
   isActive: boolean;
+
+  @HasMany(() => Attendance)
+  attendance?: Attendance[];
 }

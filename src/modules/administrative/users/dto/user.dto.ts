@@ -71,6 +71,10 @@ export class UserDto {
   @MaxLength(14)
   readonly cell: string;
 
+  @IsOptional()
+  @MaxLength(20)
+  readonly council: string;
+
   @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;

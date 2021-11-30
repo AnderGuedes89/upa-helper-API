@@ -114,6 +114,12 @@ export class User extends Model {
   cell: string;
 
   @Column({
+    type: DataType.STRING(20),
+    allowNull: true,
+  })
+  council: string;
+
+  @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: true,

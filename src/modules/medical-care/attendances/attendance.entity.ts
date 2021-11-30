@@ -8,6 +8,7 @@ import {
   BelongsTo,
   HasOne,
 } from 'sequelize-typescript';
+import { AttendanceStatus } from 'src/core/entities/attendance-status.entity';
 import { Patient } from '../patients/patient.entity';
 import { Triage } from '../triages/triage.entity';
 
@@ -60,9 +61,19 @@ export class Attendance extends Model {
   })
   patientId: number;
 
+  @ForeignKey(() => AttendanceStatus)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  statusId: number;
+
   @BelongsTo(() => Patient)
   patient: Patient;
 
   @HasOne(() => Triage)
   triage?: Triage;
+
+  @BelongsTo(() => AttendanceStatus)
+  status?: AttendanceStatus;
 }
