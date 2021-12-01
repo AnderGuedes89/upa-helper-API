@@ -28,7 +28,7 @@ export class Triage extends Model {
   bloodPressure: string;
 
   @Column({
-    type: DataType.STRING(7),
+    type: DataType.STRING(8),
     allowNull: false,
   })
   temperature: string;
@@ -40,7 +40,7 @@ export class Triage extends Model {
   triageDate: Date;
 
   @Column({
-    type: DataType.STRING(10),
+    type: DataType.STRING(5),
     allowNull: false,
   })
   saturation: string;
@@ -52,31 +52,31 @@ export class Triage extends Model {
   bloodGlucose: string;
 
   @Column({
-    type: DataType.STRING(10),
+    type: DataType.STRING(6),
     allowNull: false,
   })
   pulse: string;
 
   @Column({
-    type: DataType.STRING(10),
+    type: DataType.STRING(6),
     allowNull: false,
   })
   respiratoryFrequency: string;
 
   @Column({
-    type: DataType.STRING(10),
+    type: DataType.STRING(9),
     allowNull: false,
   })
   weight: string;
 
   @Column({
-    type: DataType.STRING(10),
+    type: DataType.STRING(6),
     allowNull: false,
   })
   height: string;
 
   @Column({
-    type: DataType.STRING(10),
+    type: DataType.STRING(11),
     allowNull: false,
   })
   imc: string;

@@ -13,7 +13,7 @@ export class TriageDto {
   readonly bloodPressure: string;
 
   @IsOptional()
-  @MaxLength(7)
+  @MaxLength(8)
   readonly temperature: string;
 
   @IsNotEmpty()
@@ -21,7 +21,7 @@ export class TriageDto {
   readonly triageDate: Date;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(5)
   readonly saturation: string;
 
   @IsOptional()
@@ -29,23 +29,23 @@ export class TriageDto {
   readonly bloodGlucose: string;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(6)
   readonly pulse: string;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(6)
   readonly respiratoryFrequency: string;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(9)
   readonly weight: string;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(6)
   readonly height: string;
 
   @IsOptional()
-  @MaxLength(10)
+  @MaxLength(11)
   readonly imc: string;
 
   @IsOptional()
@@ -72,23 +72,23 @@ export class TriageDto {
   @IsBoolean()
   readonly isPreferred: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   readonly hasHypertension: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   readonly hasDiabetes: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   readonly isSmoker: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   readonly hasCancer: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   readonly isTransplanted: boolean;
 
