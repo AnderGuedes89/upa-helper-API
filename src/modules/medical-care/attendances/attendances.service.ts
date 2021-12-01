@@ -16,13 +16,13 @@ export class AttendancesService {
 
   async findAll(): Promise<Attendance[]> {
     return await this.attendanceRepository.findAll<Attendance>({
-      include: ['patient'],
+      include: ['patient', 'status'],
     });
   }
 
   async findAllForTable(): Promise<any[]> {
     const allAttendance = await this.attendanceRepository.findAll<Attendance>({
-      include: ['patient'],
+      include: ['patient', 'status'],
     });
     const attendanceForTable = allAttendance.map((a) => ({
       id: a.id,
@@ -30,6 +30,7 @@ export class AttendancesService {
       date: a.arrivalDate,
       patientName: a.patient.name,
       patientId: a.patient.id,
+      attendanceStatus: a.status.label,
     }));
     return attendanceForTable;
   }
@@ -37,7 +38,7 @@ export class AttendancesService {
   async findOneById(id: number): Promise<Attendance> {
     return await this.attendanceRepository.findOne({
       where: { id },
-      include: ['patient'],
+      include: ['patient', 'status'],
     });
   }
 
