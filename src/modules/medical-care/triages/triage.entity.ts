@@ -99,12 +99,6 @@ export class Triage extends Model {
   })
   allergies: string;
 
-  @Column({
-    type: DataType.TEXT,
-    allowNull: false,
-  })
-  personalBackground: string;
-
   @ForeignKey(() => PainIntensity)
   @Column({
     type: DataType.INTEGER,

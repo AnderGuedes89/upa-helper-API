@@ -61,10 +61,6 @@ export class TriageDto {
   readonly allergies: string;
 
   @IsOptional()
-  @MaxLength(255)
-  readonly personalBackground: string;
-
-  @IsOptional()
   @IsInt()
   readonly painIntensity: number;
 
