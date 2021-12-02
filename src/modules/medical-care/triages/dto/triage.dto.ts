@@ -62,11 +62,11 @@ export class TriageDto {
 
   @IsOptional()
   @IsInt()
-  readonly painIntensity: number;
+  readonly painIntensityId: number;
 
   @IsNotEmpty()
   @IsInt()
-  readonly riskRating: number;
+  readonly riskRatingId: number;
 
   @IsNotEmpty()
   @IsBoolean()
@@ -95,4 +95,12 @@ export class TriageDto {
   @IsNotEmpty()
   @IsBoolean()
   readonly isActive: boolean;
+
+  @IsNotEmpty()
+  @IsInt()
+  readonly attendanceId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  readonly userId: number;
 }
