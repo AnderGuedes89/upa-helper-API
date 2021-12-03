@@ -18,7 +18,7 @@ describe('AppController', () => {
     it('should return name e version', () => {
       expect(appController.getVersion()).toBe({
         name: 'UPA Helper',
-        version: '1.0.0',
+        version: '1.0.1',
       });
     });
   });
