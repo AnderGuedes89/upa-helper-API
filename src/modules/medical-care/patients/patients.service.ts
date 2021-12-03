@@ -10,35 +10,31 @@ export class PatientsService {
     private readonly patientRepository: typeof Patient,
   ) {}
 
-  async create(patient: PatientDto): Promise<Patient> {
+  async createPatient(patient: PatientDto): Promise<Patient> {
     return await this.patientRepository.create<Patient>(patient);
   }
 
-  async findAll(): Promise<Patient[]> {
+  async getPatientsForTable(): Promise<Patient[]> {
     return await this.patientRepository.findAll<Patient>({
       include: ['ethnicity', 'gender'],
     });
   }
 
-  async findOneById(id: number): Promise<Patient> {
+  async getPatientById(id: number): Promise<Patient> {
     return await this.patientRepository.findOne({
       where: { id },
       include: ['ethnicity', 'gender'],
     });
   }
 
-  async findOneByCpf(cpf: string): Promise<Patient> {
+  async getPatientByCpf(cpf: string): Promise<Patient> {
     return await this.patientRepository.findOne<Patient>({
       where: { cpf },
       include: ['ethnicity', 'gender'],
     });
   }
 
-  async delete(id: number) {
-    return await this.patientRepository.destroy({ where: { id } });
-  }
-
-  async update(id: number, data: PatientDto) {
+  async updatePatient(id: number, data: PatientDto) {
     const [numberOfAffectedRows, [updatedPatient]] =
       await this.patientRepository.update(
         { ...data },

@@ -9,27 +9,19 @@ export class UsersService {
     @Inject(USER_REPOSITORY) private readonly userRepository: typeof User,
   ) {}
 
-  async create(user: UserDto): Promise<User> {
+  async createUser(user: UserDto): Promise<User> {
     return await this.userRepository.create<User>(user);
   }
 
-  async findOneByEmail(email: string): Promise<User> {
-    return await this.userRepository.findOne<User>({ where: { email } });
-  }
-
-  async findOneByCpf(cpf: string): Promise<User> {
+  async getUserByCpf(cpf: string): Promise<User> {
     return await this.userRepository.findOne<User>({ where: { cpf } });
   }
 
-  async findOneById(id: number): Promise<User> {
+  async getUserById(id: number): Promise<User> {
     return await this.userRepository.findOne<User>({ where: { id } });
   }
 
-  async findAll(): Promise<User[]> {
-    return await this.userRepository.findAll<User>();
-  }
-
-  async findAllForTable(): Promise<any[]> {
+  async getUserForTable(): Promise<any[]> {
     const allUser = await this.userRepository.findAll<User>({
       include: ['userType'],
     });
@@ -42,11 +34,7 @@ export class UsersService {
     return userForTable;
   }
 
-  async delete(id: number) {
-    return await this.userRepository.destroy({ where: { id } });
-  }
-
-  async update(id: number, data: UserDto) {
+  async updateUser(id: number, data: UserDto) {
     const [numberOfAffectedRows, [updatedUser]] =
       await this.userRepository.update(
         { ...data },

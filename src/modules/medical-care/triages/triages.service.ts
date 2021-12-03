@@ -12,7 +12,7 @@ export class TriagesService {
     private readonly attendanceRepository: typeof Attendance,
   ) {}
 
-  async create(triage: TriageDto): Promise<Triage> {
+  async createTriage(triage: TriageDto): Promise<Triage> {
     const attendanceId = triage.attendanceId;
     const attendance = await this.attendanceRepository.findOne({
       where: { id: attendanceId },
@@ -30,19 +30,11 @@ export class TriagesService {
     return await this.triageRepository.create<Triage>(triage);
   }
 
-  async findAll(): Promise<Triage[]> {
-    return await this.triageRepository.findAll<Triage>();
-  }
-
-  async findOneById(id: number): Promise<Triage> {
+  async getTriageById(id: number): Promise<Triage> {
     return await this.triageRepository.findOne({ where: { id } });
   }
 
-  async delete(id: number) {
-    return await this.triageRepository.destroy({ where: { id } });
-  }
-
-  async update(id: number, data: TriageDto) {
+  async updateTriage(id: number, data: TriageDto) {
     const [numberOfAffectedRows, [updatedTriage]] =
       await this.triageRepository.update(
         { ...data },

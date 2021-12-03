@@ -19,7 +19,9 @@ export class DoesPatientExist implements CanActivate {
   }
 
   async validateRequest(request) {
-    const isExist = await this.patientsService.findOneByCpf(request.body.cpf);
+    const isExist = await this.patientsService.getPatientByCpf(
+      request.body.cpf,
+    );
     if (isExist) {
       throw new ForbiddenException('Já existe um paciente com esse CPF');
     }

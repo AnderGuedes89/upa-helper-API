@@ -93,10 +93,6 @@ export class TriageDto {
   readonly isTransplanted: boolean;
 
   @IsNotEmpty()
-  @IsBoolean()
-  readonly isActive: boolean;
-
-  @IsNotEmpty()
   @IsInt()
   readonly attendanceId: number;
 

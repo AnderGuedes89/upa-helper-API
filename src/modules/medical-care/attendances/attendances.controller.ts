@@ -1,12 +1,10 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   NotFoundException,
   Param,
   Post,
-  Put,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -20,54 +18,30 @@ export class AttendancesController {
   constructor(private readonly attendancesService: AttendancesService) {}
 
   @Post()
-  async create(@Body() attendance: AttendanceDto): Promise<Attendance> {
-    return await this.attendancesService.create(attendance);
+  async createAttendance(
+    @Body() attendance: AttendanceDto,
+  ): Promise<Attendance> {
+    return await this.attendancesService.createAttendance(attendance);
   }
 
-  @Get()
-  async findAll() {
-    return await this.attendancesService.findAll();
+  @Get('table/opened')
+  async getAttendancesOpenedForTable() {
+    return await this.attendancesService.getAttendancesOpenedForTable();
   }
 
-  @Get('table')
-  async findAllForTable() {
-    return await this.attendancesService.findAllForTable();
+  @Get('table/completed')
+  async getAttendancesCompletedForTable() {
+    return await this.attendancesService.getAttendancesCompletedForTable();
   }
 
   @Get(':id')
-  async findOneById(@Param('id') id: number): Promise<Attendance> {
-    const post = await this.attendancesService.findOneById(id);
+  async getAttendanceById(@Param('id') id: number): Promise<Attendance> {
+    const attendance = await this.attendancesService.getAttendanceById(id);
 
-    if (!post) {
+    if (!attendance) {
       throw new NotFoundException('Esse atendimento não existe');
     }
 
-    return post;
-  }
-
-  @Put(':id')
-  async update(
-    @Param('id') id: number,
-    @Body() attendance: AttendanceDto,
-  ): Promise<Attendance> {
-    const { numberOfAffectedRows, updatedAttendance }: any =
-      await this.attendancesService.update(id, attendance);
-
-    if (numberOfAffectedRows === 0) {
-      throw new NotFoundException('Esse atendimento não existe');
-    }
-
-    return updatedAttendance;
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: number) {
-    const deleted = await this.attendancesService.delete(id);
-
-    if (deleted === 0) {
-      throw new NotFoundException('Esse atendimento não existe');
-    }
-
-    return 'Excluído com sucesso';
+    return attendance;
   }
 }

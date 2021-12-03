@@ -155,13 +155,6 @@ export class Triage extends Model {
   })
   isTransplanted: boolean;
 
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  })
-  isActive: boolean;
-
   @ForeignKey(() => Attendance)
   @Column({
     type: DataType.INTEGER,

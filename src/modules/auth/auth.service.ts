@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   async validateUser(cpf: string, pass: string) {
-    const user = await this.userService.findOneByCpf(cpf);
+    const user = await this.userService.getUserByCpf(cpf);
     if (!user) {
       return null;
     }
@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   public async login(user) {
-    const userLogin = await this.userService.findOneByCpf(user.cpf);
+    const userLogin = await this.userService.getUserByCpf(user.cpf);
 
     const userForToken = {
       ...user,
@@ -39,10 +39,13 @@ export class AuthService {
     return { token };
   }
 
-  public async create(user: UserDto) {
+  public async createUser(user: UserDto) {
     const pass = await this.hashPassword(user.password);
 
-    const newUser = await this.userService.create({ ...user, password: pass });
+    const newUser = await this.userService.createUser({
+      ...user,
+      password: pass,
+    });
 
     const { password, ...result } = newUser['dataValues'];
 

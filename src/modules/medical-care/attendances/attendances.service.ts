@@ -10,49 +10,44 @@ export class AttendancesService {
     private readonly attendanceRepository: typeof Attendance,
   ) {}
 
-  async create(attendance: AttendanceDto): Promise<Attendance> {
+  async createAttendance(attendance: AttendanceDto): Promise<Attendance> {
     return await this.attendanceRepository.create<Attendance>(attendance);
   }
 
-  async findAll(): Promise<Attendance[]> {
-    return await this.attendanceRepository.findAll<Attendance>({
-      include: ['patient', 'status'],
-    });
-  }
-
-  async findAllForTable(): Promise<any[]> {
+  async getAttendancesOpenedForTable(): Promise<any[]> {
     const allAttendance = await this.attendanceRepository.findAll<Attendance>({
       include: ['patient', 'status'],
+      where: { statusId: { $not: 6 } },
     });
-    const attendanceForTable = allAttendance.map((a) => ({
+    const attendanceOpened = allAttendance.map((a) => ({
+      id: a.id,
+      patientAge: a.patientAge + ' Anos',
+      date: a.arrivalDate,
+      patientName: a.patient.name,
+      attendanceStatus: a.status.label,
+    }));
+    return attendanceOpened;
+  }
+
+  async getAttendancesCompletedForTable(): Promise<any[]> {
+    const allAttendance = await this.attendanceRepository.findAll<Attendance>({
+      include: ['patient', 'status'],
+      where: { statusId: 6 },
+    });
+    const attendanceCompleted = allAttendance.map((a) => ({
       id: a.id,
       patientAge: a.patientAge + ' Anos',
       date: a.arrivalDate,
       patientName: a.patient.name,
       patientId: a.patient.id,
-      attendanceStatus: a.status.label,
     }));
-    return attendanceForTable;
+    return attendanceCompleted;
   }
 
-  async findOneById(id: number): Promise<Attendance> {
+  async getAttendanceById(id: number): Promise<Attendance> {
     return await this.attendanceRepository.findOne({
       where: { id },
       include: ['patient', 'status'],
     });
-  }
-
-  async delete(id: number) {
-    return await this.attendanceRepository.destroy({ where: { id } });
-  }
-
-  async update(id: number, data: AttendanceDto) {
-    const [numberOfAffectedRows, [updatedAttendance]] =
-      await this.attendanceRepository.update(
-        { ...data },
-        { where: { id }, returning: true },
-      );
-
-    return { numberOfAffectedRows, updatedAttendance };
   }
 }

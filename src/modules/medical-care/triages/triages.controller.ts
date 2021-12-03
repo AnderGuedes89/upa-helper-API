@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   NotFoundException,
   Param,
@@ -20,49 +19,33 @@ export class TriagesController {
   constructor(private readonly triagesService: TriagesService) {}
 
   @Post()
-  async create(@Body() triage: TriageDto): Promise<Triage> {
-    return await this.triagesService.create(triage);
-  }
-
-  @Get()
-  async findAll() {
-    return await this.triagesService.findAll();
+  async createTriage(@Body() triage: TriageDto): Promise<Triage> {
+    return await this.triagesService.createTriage(triage);
   }
 
   @Get(':id')
-  async findOneById(@Param('id') id: number): Promise<Triage> {
-    const post = await this.triagesService.findOneById(id);
+  async getTriageById(@Param('id') id: number): Promise<Triage> {
+    const triage = await this.triagesService.getTriageById(id);
 
-    if (!post) {
+    if (!triage) {
       throw new NotFoundException('Essa triagem não existe');
     }
 
-    return post;
+    return triage;
   }
 
   @Put(':id')
-  async update(
+  async updateTriage(
     @Param('id') id: number,
     @Body() triage: TriageDto,
   ): Promise<Triage> {
     const { numberOfAffectedRows, updatedTriage }: any =
-      await this.triagesService.update(id, triage);
+      await this.triagesService.updateTriage(id, triage);
 
     if (numberOfAffectedRows === 0) {
       throw new NotFoundException('Essa triagem não existe');
     }
 
     return updatedTriage;
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: number) {
-    const deleted = await this.triagesService.delete(id);
-
-    if (deleted === 0) {
-      throw new NotFoundException('Essa triagem não existe');
-    }
-
-    return 'Excluído com sucesso';
   }
 }

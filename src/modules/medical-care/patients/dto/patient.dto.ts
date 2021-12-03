@@ -4,6 +4,7 @@ import {
   MaxLength,
   IsDateString,
   IsNotEmpty,
+  IsInt,
 } from 'class-validator';
 
 export class PatientDto {
@@ -74,6 +75,14 @@ export class PatientDto {
   @IsOptional()
   @MaxLength(255)
   readonly motherName: string;
+
+  @IsNotEmpty()
+  @IsInt()
+  readonly genderId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  readonly ethnicityId: number;
 
   @IsNotEmpty()
   @IsBoolean()

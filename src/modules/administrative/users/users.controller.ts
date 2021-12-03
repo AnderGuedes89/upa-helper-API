@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   NotFoundException,
   Param,
@@ -18,19 +17,14 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
-  async findAll() {
-    return await this.usersService.findAll();
-  }
-
   @Get('table')
-  async findAllForTable() {
-    return await this.usersService.findAllForTable();
+  async getUserForTable() {
+    return await this.usersService.getUserForTable();
   }
 
   @Get(':id')
-  async findOneById(@Param('id') id: number): Promise<User> {
-    const user = await this.usersService.findOneById(id);
+  async getUserById(@Param('id') id: number): Promise<User> {
+    const user = await this.usersService.getUserById(id);
 
     if (!user) {
       throw new NotFoundException('Esse usuário não existe');
@@ -40,25 +34,17 @@ export class UsersController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() user: UserDto): Promise<User> {
+  async updateUser(
+    @Param('id') id: number,
+    @Body() user: UserDto,
+  ): Promise<User> {
     const { numberOfAffectedRows, updatedUser }: any =
-      await this.usersService.update(id, user);
+      await this.usersService.updateUser(id, user);
 
     if (numberOfAffectedRows === 0) {
       throw new NotFoundException('Esse usuário não existe');
     }
 
     return updatedUser;
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: number) {
-    const deleted = await this.usersService.delete(id);
-
-    if (deleted === 0) {
-      throw new NotFoundException('Este usuário não existe');
-    }
-
-    return 'Excluído com sucesso';
   }
 }

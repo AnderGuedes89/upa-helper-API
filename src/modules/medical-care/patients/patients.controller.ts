@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   NotFoundException,
   Param,
@@ -22,48 +21,38 @@ export class PatientsController {
 
   @UseGuards(DoesPatientExist)
   @Post()
-  async create(@Body() patient: PatientDto): Promise<Patient> {
-    return await this.patientsService.create(patient);
+  async createPatient(@Body() patient: PatientDto): Promise<Patient> {
+    return await this.patientsService.createPatient(patient);
   }
 
-  @Get()
-  async findAll() {
-    return await this.patientsService.findAll();
+  @Get('table')
+  async getPatientsForTable() {
+    return await this.patientsService.getPatientsForTable();
   }
 
   @Get(':id')
-  async findOneById(@Param('id') id: number): Promise<Patient> {
-    const post = await this.patientsService.findOneById(id);
+  async getPatientById(@Param('id') id: number): Promise<Patient> {
+    const patient = await this.patientsService.getPatientById(id);
 
-    if (!post) {
+    if (!patient) {
       throw new NotFoundException('Esse paciente não existe');
     }
 
-    return post;
+    return patient;
   }
+
   @Put(':id')
-  async update(
+  async updatePatient(
     @Param('id') id: number,
     @Body() patient: PatientDto,
   ): Promise<Patient> {
     const { numberOfAffectedRows, updatedPatient }: any =
-      await this.patientsService.update(id, patient);
+      await this.patientsService.updatePatient(id, patient);
 
     if (numberOfAffectedRows === 0) {
       throw new NotFoundException('Esse paciente não existe');
     }
 
     return updatedPatient;
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: number) {
-    const deleted = await this.patientsService.delete(id);
-
-    if (deleted === 0) {
-      throw new NotFoundException('Esse paciente não existe');
-    }
-
-    return 'Excluído com sucesso';
   }
 }

@@ -47,13 +47,6 @@ export class Attendance extends Model {
   })
   isSamu: boolean;
 
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  })
-  isActive: boolean;
-
   @ForeignKey(() => Patient)
   @Column({
     type: DataType.INTEGER,

@@ -4,6 +4,7 @@ import {
   MaxLength,
   IsNotEmpty,
   IsDateString,
+  IsInt,
 } from 'class-validator';
 
 export class AttendanceDto {
@@ -24,6 +25,10 @@ export class AttendanceDto {
   readonly isSamu: boolean;
 
   @IsNotEmpty()
-  @IsBoolean()
-  readonly isActive: boolean;
+  @IsInt()
+  readonly patientId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  readonly statusId: number;
 }

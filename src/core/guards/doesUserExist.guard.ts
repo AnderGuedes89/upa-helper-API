@@ -19,7 +19,7 @@ export class DoesUserExist implements CanActivate {
   }
 
   async validateRequest(request) {
-    const userExist = await this.userService.findOneByCpf(request.body.cpf);
+    const userExist = await this.userService.getUserByCpf(request.body.cpf);
     if (userExist) {
       throw new ForbiddenException('Já existe um usuário com esse CPF');
     }
