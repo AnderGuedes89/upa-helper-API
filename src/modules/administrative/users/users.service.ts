@@ -21,7 +21,7 @@ export class UsersService {
     return await this.userRepository.findOne<User>({ where: { id } });
   }
 
-  async getUserForTable(): Promise<any[]> {
+  async getUsersForTable(): Promise<any[]> {
     const allUser = await this.userRepository.findAll<User>({
       include: ['userType'],
     });

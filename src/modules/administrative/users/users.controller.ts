@@ -18,8 +18,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get('table')
-  async getUserForTable() {
-    return await this.usersService.getUserForTable();
+  async getUsersForTable() {
+    return await this.usersService.getUsersForTable();
   }
 
   @Get(':id')

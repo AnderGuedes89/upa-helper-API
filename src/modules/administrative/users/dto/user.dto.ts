@@ -64,11 +64,11 @@ export class UserDto {
   readonly complement: string;
 
   @IsOptional()
-  @MaxLength(13)
+  @MaxLength(14)
   readonly telephone: string;
 
   @IsNotEmpty()
-  @MaxLength(14)
+  @MaxLength(15)
   readonly cell: string;
 
   @IsOptional()

@@ -101,14 +101,14 @@ export class User extends Model {
   complement: string;
 
   @Column({
-    type: DataType.STRING(13),
+    type: DataType.STRING(14),
     allowNull: true,
     defaultValue: null,
   })
   telephone: string;
 
   @Column({
-    type: DataType.STRING(14),
+    type: DataType.STRING(15),
     allowNull: false,
   })
   cell: string;
