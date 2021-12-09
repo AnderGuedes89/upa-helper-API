@@ -34,6 +34,16 @@ export class AttendancesController {
     return await this.attendancesService.getAttendancesCompletedForTable();
   }
 
+  @Get('table/triage')
+  async getAttendancesForTriageForTable() {
+    return await this.attendancesService.getAttendancesForTriageForTable();
+  }
+
+  @Get('table/appointment')
+  async getAttendancesForAppointmentForTable() {
+    return await this.attendancesService.getAttendancesForAppointmentForTable();
+  }
+
   @Get(':id')
   async getAttendanceById(@Param('id') id: number): Promise<Attendance> {
     const attendance = await this.attendancesService.getAttendanceById(id);

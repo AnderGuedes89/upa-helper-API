@@ -17,7 +17,7 @@ export class AttendancesService {
   async getAttendancesOpenedForTable(): Promise<any[]> {
     const allAttendance = await this.attendanceRepository.findAll<Attendance>({
       include: ['patient', 'status'],
-      where: { statusId: { $not: 6 } },
+      where: { statusId: [1, 2, 3, 4, 5] },
     });
     const attendanceOpened = allAttendance.map((a) => ({
       id: a.id,
@@ -40,8 +40,41 @@ export class AttendancesService {
       date: a.arrivalDate,
       patientName: a.patient.name,
       patientId: a.patient.id,
+      attendanceStatus: a.status.label,
     }));
     return attendanceCompleted;
+  }
+
+  async getAttendancesForTriageForTable(): Promise<any[]> {
+    const allAttendance = await this.attendanceRepository.findAll<Attendance>({
+      include: ['patient', 'status'],
+      where: { statusId: 1 },
+    });
+    const attendanceTriage = allAttendance.map((a) => ({
+      id: a.id,
+      patientAge: a.patientAge + ' Anos',
+      date: a.arrivalDate,
+      patientName: a.patient.name,
+      patientId: a.patient.id,
+      attendanceStatus: a.status.label,
+    }));
+    return attendanceTriage;
+  }
+
+  async getAttendancesForAppointmentForTable(): Promise<any[]> {
+    const allAttendance = await this.attendanceRepository.findAll<Attendance>({
+      include: ['patient', 'status'],
+      where: { statusId: [2, 3, 4, 5] },
+    });
+    const attendanceAppointment = allAttendance.map((a) => ({
+      id: a.id,
+      patientAge: a.patientAge + ' Anos',
+      date: a.arrivalDate,
+      patientName: a.patient.name,
+      patientId: a.patient.id,
+      attendanceStatus: a.status.label,
+    }));
+    return attendanceAppointment;
   }
 
   async getAttendanceById(id: number): Promise<Attendance> {

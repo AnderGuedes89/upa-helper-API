@@ -61,11 +61,11 @@ export class PatientDto {
   readonly complement: string;
 
   @IsOptional()
-  @MaxLength(13)
+  @MaxLength(14)
   readonly telephone: string;
 
   @IsOptional()
-  @MaxLength(14)
+  @MaxLength(15)
   readonly cell: string;
 
   @IsOptional()

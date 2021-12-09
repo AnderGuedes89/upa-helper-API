@@ -101,13 +101,13 @@ export class Patient extends Model {
   complement: string;
 
   @Column({
-    type: DataType.STRING(13),
+    type: DataType.STRING(14),
     allowNull: true,
   })
   telephone: string;
 
   @Column({
-    type: DataType.STRING(14),
+    type: DataType.STRING(15),
     allowNull: true,
   })
   cell: string;
