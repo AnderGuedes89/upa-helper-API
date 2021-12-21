@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PATIENT_REPOSITORY } from 'src/core/constants';
+import { DateHelper } from 'src/core/helpers/date.helper';
 import { PatientDto } from './dto/patient.dto';
 import { Patient } from './patient.entity';
 
@@ -14,10 +15,18 @@ export class PatientsService {
     return await this.patientRepository.create<Patient>(patient);
   }
 
-  async getPatientsForTable(): Promise<Patient[]> {
-    return await this.patientRepository.findAll<Patient>({
+  async getPatientsForTable(): Promise<any[]> {
+    const allPatients = await this.patientRepository.findAll<Patient>({
       include: ['ethnicity', 'gender'],
     });
+    const patients = allPatients.map((p) => ({
+      id: p.id,
+      name: p.name,
+      cpf: p.cpf,
+      cns: p.cns,
+      birthday: DateHelper.formatOnlyDate(p.birthday),
+    }));
+    return patients;
   }
 
   async getPatientById(id: number): Promise<Patient> {

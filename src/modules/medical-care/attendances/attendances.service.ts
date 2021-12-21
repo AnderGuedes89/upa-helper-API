@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ATTENDANCE_REPOSITORY } from 'src/core/constants';
+import { CommonHelper } from 'src/core/helpers/common.helper';
+import { DateHelper } from 'src/core/helpers/date.helper';
 import { Attendance } from './attendance.entity';
 import { AttendanceDto } from './dto/attendance.dto';
 
@@ -21,8 +23,8 @@ export class AttendancesService {
     });
     const attendanceOpened = allAttendance.map((a) => ({
       id: a.id,
-      patientAge: a.patientAge + ' Anos',
-      date: a.arrivalDate,
+      patientAge: CommonHelper.formatAge(a.patientAge),
+      date: DateHelper.formatDateTime(a.arrivalDate),
       patientName: a.patient.name,
       attendanceStatus: a.status.label,
     }));
@@ -36,8 +38,8 @@ export class AttendancesService {
     });
     const attendanceCompleted = allAttendance.map((a) => ({
       id: a.id,
-      patientAge: a.patientAge + ' Anos',
-      date: a.arrivalDate,
+      patientAge: CommonHelper.formatAge(a.patientAge),
+      date: DateHelper.formatOnlyDate(a.arrivalDate),
       patientName: a.patient.name,
       patientId: a.patient.id,
       attendanceStatus: a.status.label,
@@ -52,8 +54,8 @@ export class AttendancesService {
     });
     const attendanceTriage = allAttendance.map((a) => ({
       id: a.id,
-      patientAge: a.patientAge + ' Anos',
-      date: a.arrivalDate,
+      patientAge: CommonHelper.formatAge(a.patientAge),
+      date: DateHelper.formatDateTime(a.arrivalDate),
       patientName: a.patient.name,
       patientId: a.patient.id,
       attendanceStatus: a.status.label,
@@ -68,8 +70,8 @@ export class AttendancesService {
     });
     const attendanceAppointment = allAttendance.map((a) => ({
       id: a.id,
-      patientAge: a.patientAge + ' Anos',
-      date: a.arrivalDate,
+      patientAge: CommonHelper.formatAge(a.patientAge),
+      date: DateHelper.formatDateTime(a.arrivalDate),
       patientName: a.patient.name,
       patientId: a.patient.id,
       attendanceStatus: a.status.label,
