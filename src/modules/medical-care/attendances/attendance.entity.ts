@@ -9,6 +9,7 @@ import {
   HasOne,
 } from 'sequelize-typescript';
 import { AttendanceStatus } from 'src/core/entities/attendance-status.entity';
+import { Appointment } from '../appointments/appointment.entity';
 import { Patient } from '../patients/patient.entity';
 import { Triage } from '../triages/triage.entity';
 
@@ -66,6 +67,9 @@ export class Attendance extends Model {
 
   @HasOne(() => Triage)
   triage?: Triage;
+
+  @HasOne(() => Appointment)
+  appointment?: Appointment;
 
   @BelongsTo(() => AttendanceStatus)
   status?: AttendanceStatus;

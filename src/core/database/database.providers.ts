@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { User } from 'src/modules/administrative/users/user.entity';
+import { Appointment } from 'src/modules/medical-care/appointments/appointment.entity';
 import { Attendance } from 'src/modules/medical-care/attendances/attendance.entity';
 import { Patient } from 'src/modules/medical-care/patients/patient.entity';
 import { Triage } from 'src/modules/medical-care/triages/triage.entity';
@@ -42,6 +43,7 @@ export const databaseProviders = [
         RiskRating,
         PainIntensity,
         AttendanceStatus,
+        Appointment,
       ]);
       await sequelize.sync();
       return sequelize;
