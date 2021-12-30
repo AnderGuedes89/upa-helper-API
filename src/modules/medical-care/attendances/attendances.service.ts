@@ -82,7 +82,7 @@ export class AttendancesService {
   async getAttendanceById(id: number): Promise<Attendance> {
     return await this.attendanceRepository.findOne({
       where: { id },
-      include: ['patient', 'status'],
+      include: ['patient', 'status', 'triage'],
     });
   }
 }
