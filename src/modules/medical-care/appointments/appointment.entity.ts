@@ -21,16 +21,28 @@ export class Appointment extends Model {
   id: number;
 
   @Column({
-    type: DataType.STRING(11),
+    type: DataType.STRING(255),
     allowNull: false,
   })
-  bloodPressure: string;
+  diagnosis: string;
 
   @Column({
-    type: DataType.STRING(8),
+    type: DataType.STRING(255),
     allowNull: false,
   })
-  temperature: string;
+  prescription: string;
+
+  @Column({
+    type: DataType.STRING(100),
+    allowNull: false,
+  })
+  cid: string;
+
+  @Column({
+    type: DataType.STRING(10),
+    allowNull: false,
+  })
+  exitData: string;
 
   @Column({
     type: DataType.DATE,

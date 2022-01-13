@@ -8,15 +8,25 @@ import {
 } from 'class-validator';
 
 export class AppointmentDto {
-  @IsOptional()
-  @MaxLength(11)
-  @ApiPropertyOptional()
-  readonly bloodPressure: string;
+  @IsNotEmpty()
+  @MaxLength(255)
+  @ApiProperty()
+  readonly diagnosis: string;
 
   @IsOptional()
-  @MaxLength(8)
+  @MaxLength(255)
   @ApiPropertyOptional()
-  readonly temperature: string;
+  readonly prescription: string;
+
+  @IsOptional()
+  @MaxLength(255)
+  @ApiPropertyOptional()
+  readonly cid: string;
+
+  @IsNotEmpty()
+  @MaxLength(255)
+  @ApiProperty()
+  readonly exitData: string;
 
   @IsNotEmpty()
   @IsDateString()
