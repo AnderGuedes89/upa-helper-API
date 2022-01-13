@@ -24,7 +24,7 @@ export class AppointmentDto {
   readonly cid: string;
 
   @IsNotEmpty()
-  @MaxLength(255)
+  @MaxLength(10)
   @ApiProperty()
   readonly exitData: string;
 
@@ -37,11 +37,6 @@ export class AppointmentDto {
   @IsInt()
   @ApiProperty()
   readonly attendanceId: number;
-
-  @IsNotEmpty()
-  @IsInt()
-  @ApiProperty()
-  readonly triageId: number;
 
   @IsNotEmpty()
   @IsInt()

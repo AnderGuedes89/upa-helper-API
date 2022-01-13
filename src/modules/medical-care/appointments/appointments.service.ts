@@ -24,7 +24,7 @@ export class AppointmentsService {
 
     delete attendance.id;
     delete attendance.statusId;
-    const newStatusId = 3;
+    const newStatusId = 6;
 
     await this.attendanceRepository.update(
       { ...attendance, statusId: newStatusId },

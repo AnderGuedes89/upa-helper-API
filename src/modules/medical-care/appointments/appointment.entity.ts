@@ -9,7 +9,6 @@ import {
 } from 'sequelize-typescript';
 import { User } from 'src/modules/administrative/users/user.entity';
 import { Attendance } from '../attendances/attendance.entity';
-import { Triage } from '../triages/triage.entity';
 
 @Table
 export class Appointment extends Model {
@@ -59,13 +58,6 @@ export class Appointment extends Model {
 
   @BelongsTo(() => Attendance)
   attendance: Attendance;
-
-  @ForeignKey(() => Triage)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  triageId: number;
 
   @ForeignKey(() => User)
   @Column({
