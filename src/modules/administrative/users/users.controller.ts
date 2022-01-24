@@ -31,7 +31,7 @@ export class UsersController {
     const user = await this.usersService.getUserById(id);
 
     if (!user) {
-      throw new NotFoundException('Esse usuário não existe');
+      throw new NotFoundException('Esse funcionário não existe');
     }
 
     return user;
@@ -49,7 +49,7 @@ export class UsersController {
       await this.usersService.updateUser(id, user);
 
     if (numberOfAffectedRows === 0) {
-      throw new NotFoundException('Esse usuário não existe');
+      throw new NotFoundException('Esse funcionário não existe');
     }
 
     return updatedUser;
