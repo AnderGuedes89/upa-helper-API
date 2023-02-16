@@ -60,12 +60,10 @@ $ npm run test:cov
 
 - [x] Cadastro de Usuário
 - [x] Edição de Usuário
-- [x] Atualização de Usuário
 - [x] Exclusão de Usuário
 - [x] Listagem dos Usuários
 - [x] Cadastro de Paciente
 - [x] Edição de Paciente
-- [x] Atualização de Paciente
 - [x] Exclusão de Paciente
 - [x] Listagem dos Pacientes
 - [x] Cadastro de Ficha de Atendimento
